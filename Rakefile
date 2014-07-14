@@ -66,6 +66,6 @@ multitask :trim => trim_tasks
 file 'trimmed/all.vrt' => trim_jpgs do |t|
     sh *["gdalbuildvrt", "trimmed/all.vrt"] + trim_jpgs
 end
-task :build => 'trimmed/all.vrt'
+multitask :build => 'trimmed/all.vrt'
 
-task :default => :build
+multitask :default => :build
