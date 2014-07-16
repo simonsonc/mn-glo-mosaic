@@ -39,7 +39,7 @@ zips.each do |input|
     cutline = "cutlines/#{trs}.json"
 
     task = file output => [input, cutline] do
-        sh "gdalwarp -of VRT -cutline '#{cutline}' -crop_to_cutline -dstalpha '/vsizip/#{input}/#{trs}.jpg' '#{output}'"
+        sh "gdalwarp -of VRT -cutline '#{cutline}' -crop_to_cutline -dstalpha -overwrite '/vsizip/#{input}/#{trs}.jpg' '#{output}'"
     end
     cutline_tasks << task
 end
