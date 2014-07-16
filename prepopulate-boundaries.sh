@@ -1,7 +1,7 @@
 #!/bin/bash
-if [ ! -e alt_mn.zip ]; then
+if [ ! -e trs.zip ]; then
     # this shapefile has all the TRS boundaries for MN
-    wget 'http://www.geocommunicator.gov/shapefilesall/state/alt_mn.zip'
+    wget 'ftp://ftp.lmic.state.mn.us/pub/data/admin_poli/trs.zip'
 fi
 
 mkdir -p boundaries
@@ -12,9 +12,14 @@ for i in $zips; do
     args=`echo $name | sed -e 's/t\([[:digit:]]*\)r\([[:digit:]]*\)\([we]\)\([[:digit:]]\).*/\1 \2 \3 \4/'`
     read twp range ew meridian <<< $args
 
-    range="0$range"
+    twp=`echo $twp | sed -e "s/^0*//"`
+    range=`echo $range | sed -e "s/^0*//"`
     meridian="0$meridian"
-    ew=`echo $ew | tr [a-z] [A-Z]`
+    if [ $ew == 'e' ]; then
+        ew="1"
+    else
+        ew="2"
+    fi
 
     if [ "$meridian" == '04' ]; then
         meridian='46'
@@ -25,7 +30,7 @@ for i in $zips; do
     #query="'town' = '${twp}' AND 'range' = '${range}' AND 'rngdir' = '${ew}' AND 'primer' = '${meridian}'"
     #echo "$query"
 
-    query="'town' = '${twp}' AND 'range' = '${range}' AND 'rngdir' = '${ew}'"
-    select="label"
-    ogr2ogr -select "$select" -where "$query" -f GeoJSON boundaries/$name.json /vsizip/alt_mn.zip/alt_MN/alt_twnshp.shp
+    query="'TOWN' = '${twp}' AND 'RANG' = '${range}' AND 'DIR' = '${ew}'"
+    select="TWP_LABEL"
+    ogr2ogr -t_srs "EPSG:4326" -select "$select" -where "$query" -f GeoJSON boundaries/$name.json /vsizip/trs.zip/tr.shp
 done
