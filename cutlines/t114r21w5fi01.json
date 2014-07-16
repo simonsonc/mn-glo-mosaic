@@ -2,10 +2,6 @@
   "type": "FeatureCollection",
   "features": [
     {
-      "type": "Feature",
-      "properties": {
-        "label": "114N 21W"
-      },
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -136,6 +132,10 @@
             ]
           ]
         ]
+      },
+      "type": "Feature",
+      "properties": {
+        "label": "114N 21W"
       }
     }
   ]
