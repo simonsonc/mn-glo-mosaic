@@ -24,9 +24,9 @@ entries.each do |trs, county|
     county_tasks[county] << task
 end
 
-multitask :download => download_tasks
+task :download => download_tasks
 county_tasks.each do |county, tasks|
-    multitask county => tasks
+    task county => tasks
 end
 
 # Tasks for making the VRT file from the zip with the cutline included
@@ -44,7 +44,7 @@ zips.each do |input|
     cutline_tasks << task
 end
 
-multitask :cut => cutline_tasks
+task :cut => cutline_tasks
 
 # Tasks for actually trimming the tiles
 trim_tasks = []
@@ -60,12 +60,12 @@ zips.each do |input|
     trim_tasks << task
 end
 
-multitask :trim => trim_tasks
+task :trim => trim_tasks
 
 # Tasks for building the final patchwork
 file 'trimmed/all.vrt' => trim_jpgs do |t|
     sh *["gdalbuildvrt", "trimmed/all.vrt"] + trim_jpgs
 end
-multitask :build => 'trimmed/all.vrt'
+task :build => 'trimmed/all.vrt'
 
-multitask :default => :build
+task :default => :build
