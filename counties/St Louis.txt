@@ -23,7 +23,7 @@ t051r20w4fi01.zip
 t051r21w4fi01.zip
 t052r12w4fi01.zip
 t052r13w4fi01.zip
-t052r14w4fl01.zip
+t052r14w4fi02.zip
 t052r15w4fi01.zip
 t052r16w4fi01.zip
 t052r17w4fi01.zip
@@ -143,7 +143,7 @@ t063r21w4fi01.zip
 t064r12w4fi01.zip
 t064r13w4fi01.zip
 t064r14w4fi01.zip
-t064r15w4fl01.zip
+t064r15w4fi02.zip
 t064r16w4fi01.zip
 t064r17w4fi01.zip
 t064r18w4fi01.zip

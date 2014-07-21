@@ -7,7 +7,7 @@ t053r27w4fi01.zip
 t054r22w4fi01.zip
 t054r23w4fi01.zip
 t054r24w4fi01.zip
-t054r25w4fl01.zip
+t054r25w4fi01.zip
 t054r26w4fi01.zip
 t054r27w4fi01.zip
 t055r22w4fi01.zip
@@ -66,7 +66,7 @@ t145r26w5fi01.zip
 t145r27w5fi01.zip
 t146r25w5fi01.zip
 t146r26w5fi01.zip
-t146r27w5fd01.zip
+t146r27w5fi02.zip
 t146r28w5fi01.zip
 t146r29w5fi01.zip
 t147r25w5fi01.zip
