@@ -70,7 +70,7 @@ task :trim => trim_tasks
 file 'trimmed/all.vrt' => trim_jpgs do |t|
     sh *["gdalbuildvrt", "trimmed/all.vrt"] + trim_jpgs
 end
-task :build => 'trimmed/all.vrt'
+task "build:downloaded" => 'trimmed/all.vrt'
 
 tiles = Hash.new{|h,k| h[k] = []}
 FileList['tile-entries/*.txt'].each do |fn|
@@ -108,4 +108,4 @@ trs_by_county.each do |county, trs_list|
     task county => tile_fns
 end
 
-task :default => :build
+task :default => "build:downloaded"
