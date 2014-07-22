@@ -7,6 +7,7 @@ end
 
 directory 'data'
 directory 'trimmed'
+directory 'tiled'
 
 entries = {}
 Dir.glob('counties/*.txt') do |fn|
@@ -67,5 +68,23 @@ file 'trimmed/all.vrt' => trim_jpgs do |t|
     sh *["gdalbuildvrt", "trimmed/all.vrt"] + trim_jpgs
 end
 task :build => 'trimmed/all.vrt'
+
+tiles = Hash.new{|h,k| h[k] = []}
+FileList['tile-entries/*.txt'].each do |fn|
+    tileid = File.basename(fn, ".*")
+    File.open(fn).each_line do |line|
+        tiles[tileid] << line.strip
+    end
+end
+
+tiles.each do |k, v|
+    inputs = v.collect { |i| "data/#{i}.vrt" }
+    file "tiled/#{k}.tif" => inputs do |t|
+        x1, y1 = k.split('x')
+        x2 = x1.to_i + 10000
+        y2 = y1.to_i + 10000
+        sh *["gdalwarp", "-co", "TILED=YES", "-co", "COMPRESS=JPEG", "-te", x1, y1, x2.to_s, y2.to_s] + inputs + ["tiled/#{k}.tif"]
+    end
+end
 
 task :default => :build
