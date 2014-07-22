@@ -34,10 +34,9 @@ county_tasks.each do |county, tasks|
 end
 
 # Tasks for making the VRT file from the zip with the cutline included
-zips = FileList['data/t*.zip']
-
 cutline_tasks = []
-zips.each do |input|
+entries.each do |entry, county|
+    input = "data/#{entry}"
     trs = File.basename(input, ".*")
     output = "data/#{trs}.vrt"
     cutline = "cutlines/#{trs}.json"
@@ -47,8 +46,19 @@ zips.each do |input|
     end
     cutline_tasks << task
 end
+task "cut:all" => cutline_tasks
 
-task :cut => cutline_tasks
+# Tasks for building the VRT for things we already have downloaded
+zips = FileList['data/t*.zip']
+
+downloaded_fns = []
+zips.each do |input|
+    trs = File.basename(input, ".*")
+    vrt = "data/#{trs}.vrt"
+    downloaded_fns << vrt
+end
+
+task "cut:downloaded" => downloaded_fns
 
 # Tasks for actually trimming the tiles
 trim_tasks = []
