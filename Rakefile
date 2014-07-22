@@ -10,10 +10,13 @@ directory 'trimmed'
 directory 'tiled'
 
 entries = {}
+trs_by_county = Hash.new{|h,k| h[k] = []}
 Dir.glob('counties/*.txt') do |fn|
     county = File.basename(fn, ".*")
     File.open(fn).each_line do |line|
-        entries[line.strip] = county 
+        trs = line.strip
+        trs_by_county[county] << File.basename(trs, ".*")
+        entries[trs] = county
     end
 end
 
@@ -85,6 +88,24 @@ tiles.each do |k, v|
         y2 = y1.to_i + 10000
         sh *["gdalwarp", "-co", "TILED=YES", "-co", "COMPRESS=JPEG", "-te", x1, y1, x2.to_s, y2.to_s] + inputs + ["tiled/#{k}.tif"]
     end
+end
+
+def invert_multimap(map)
+    ret = Hash.new{|h,k| h[k] = []}
+    map.each do |k, v|
+        v.each do |i|
+            ret[i] << k
+        end
+    end
+    ret
+end
+
+tiles_by_id = invert_multimap(tiles)
+trs_by_county.each do |county, trs_list|
+    county_tiles = []
+    trs_list.each { |i| county_tiles += tiles_by_id[i] }
+    tile_fns = county_tiles.collect { |i| "tiled/#{i}.tif" }
+    task county => tile_fns
 end
 
 task :default => :build
