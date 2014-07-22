@@ -4,6 +4,12 @@ from osgeo import osr
 from osgeo import gdal
 import os.path
 
+STEP = 10000
+MINX = 180000 #189774.764105
+MINY = 4810000 #4816337.325688
+MAXX = 770000 #761944.028930
+MAXY = 5480000 #5472405.931701
+
 t_srs = osr.SpatialReference()
 t_srs.ImportFromEPSG(26915)
 
@@ -32,12 +38,12 @@ for outline in glob.glob('cutlines/*.json'):
         vrt = 'data/%s.vrt' % (fn,)
         extents[vrt] = ext
 
-for x1 in range(460000, 520000, 10000):
-    for y1 in range(4920000, 4970000, 10000):
+for x1 in range(MINX, MAXX, STEP):
+    for y1 in range(MINY, MAXY, STEP):
         left = x1
         top = y1
-        right = x1 + 10000
-        bottom = y1 + 10000
+        right = x1 + STEP
+        bottom = y1 + STEP
 
         edge = ogr.Geometry(ogr.wkbLinearRing)
         edge.AssignSpatialReference(t_srs)
@@ -57,8 +63,8 @@ for x1 in range(460000, 520000, 10000):
             if not v.Disjoint(cutline):
                 entries.append(k)
 
-        print("%d %d (%d)" % (x1, y1, len(entries)))
         if len(entries):
+            print("%d %d (%d)" % (x1, y1, len(entries)))
             with open('tile-entries/%dx%d.txt' % (x1, y1), 'w') as out:
                 for i in entries:
                     out.write(i + '\n')
