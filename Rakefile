@@ -26,7 +26,7 @@ end
 
 task :download => download_tasks
 county_tasks.each do |county, tasks|
-    task county => tasks
+    task 'download:' + county => tasks
 end
 
 # Tasks for making the VRT file from the zip with the cutline included
