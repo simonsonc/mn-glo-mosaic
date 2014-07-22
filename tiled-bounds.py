@@ -35,8 +35,7 @@ import glob
 for outline in glob.glob('cutlines/*.json'):
     for ext in raster_extents(outline):
         fn, _ = os.path.splitext(os.path.basename(outline))
-        vrt = 'data/%s.vrt' % (fn,)
-        extents[vrt] = ext
+        extents[fn] = ext
 
 for x1 in range(MINX, MAXX, STEP):
     for y1 in range(MINY, MAXY, STEP):

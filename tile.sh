@@ -8,9 +8,19 @@ for x in `seq 460000 10000 520000`; do
         entry_fn="tile-entries/${ref}.txt"
         if [ -e $entry_fn ]; then
             entries=`cat $entry_fn`
-            #gdalwarp -te $x $y $x2 $y2 *.tif poop/${x}x${y}.tif
-            #gdalwarp -co TILED=YES -co COMPRESS=JPEG -te $x $y $x2 $y2 trimmed/all.vrt tiled/${x}x${y}.tif
-            gdalwarp -co TILED=YES -co COMPRESS=JPEG -te $x $y $x2 $y2 $entries tiled/${x}x${y}.tif
+            filtered=
+            for i in $entries; do
+                vrt="data/$i.vrt"
+                if [ -e $vrt ]; then
+                    filtered="$filtered $vrt"
+                fi
+            done
+
+            if [ "x$filtered" != "x" ]; then
+                #gdalwarp -te $x $y $x2 $y2 *.tif poop/${x}x${y}.tif
+                #gdalwarp -co TILED=YES -co COMPRESS=JPEG -te $x $y $x2 $y2 trimmed/all.vrt tiled/${x}x${y}.tif
+                gdalwarp -co TILED=YES -co COMPRESS=JPEG -te $x $y $x2 $y2 $filtered tiled/${x}x${y}.tif
+            fi
         fi
     done
 done
