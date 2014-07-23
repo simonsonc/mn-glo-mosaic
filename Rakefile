@@ -1,3 +1,5 @@
+require 'tempfile'
+
 def add_map(county, trs)
     outfn = "data/#{trs}"
     file outfn => 'data' do
@@ -96,7 +98,15 @@ tiles.each do |k, v|
         x1, y1 = k.split('x')
         x2 = x1.to_i + 10000
         y2 = y1.to_i + 10000
-        sh *["gdalwarp", "-co", "COMPRESS=JPEG", "-te", x1, y1, x2.to_s, y2.to_s] + inputs + ["tiled/#{k}.tif"]
+        tmpfh = Tempfile.new(['tmp-tile', '.tif'])
+        tmpfh.close
+        begin
+            tmpfn = tmpfh.path
+            sh *["gdalwarp", "-te", x1, y1, x2.to_s, y2.to_s] + inputs + [tmpfn]
+            sh *["gdal_translate", "-co", "COMPRESS=JPEG", "-co", "TILED=YES", tmpfn, "tiled/#{k}.tif"]
+        ensure
+            tmpfh.unlink
+        end
     end
 end
 
