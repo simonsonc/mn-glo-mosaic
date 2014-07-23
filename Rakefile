@@ -96,7 +96,7 @@ tiles.each do |k, v|
         x1, y1 = k.split('x')
         x2 = x1.to_i + 10000
         y2 = y1.to_i + 10000
-        sh *["gdalwarp", "-co", "TILED=YES", "-co", "COMPRESS=JPEG", "-te", x1, y1, x2.to_s, y2.to_s] + inputs + ["tiled/#{k}.tif"]
+        sh *["gdalwarp", "-co", "COMPRESS=JPEG", "-te", x1, y1, x2.to_s, y2.to_s] + inputs + ["tiled/#{k}.tif"]
     end
 end
 
