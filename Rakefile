@@ -1,8 +1,19 @@
 require 'tempfile'
 
+def safe_file(*args, &block)
+    file(*args) do |t|
+        begin
+            yield
+        rescue Exception => e
+            rm t.name
+            raise e
+        end
+    end
+end
+
 def add_map(county, trs)
     outfn = "data/#{trs}"
-    file outfn => 'data' do
+    safe_file outfn => 'data' do
         sh "wget 'ftp://ftp.lmic.state.mn.us/pub/data/basemaps/glo/#{county}/Georeferenced/#{trs}' -O#{outfn}"
     end
 end
@@ -43,7 +54,7 @@ entries.each do |entry, county|
     output = "data/#{trs}.vrt"
     cutline = "cutlines/#{trs}.json"
 
-    task = file output => [input, cutline] do
+    task = safe_file output => [input, cutline] do
         sh "gdalwarp -of VRT -cutline '#{cutline}' -crop_to_cutline -dstalpha -overwrite '/vsizip/#{input}/#{trs}.jpg' '#{output}'"
     end
     cutline_tasks << task
@@ -70,7 +81,7 @@ zips.each do |input|
     output = "trimmed/#{trs}.jpg"
     trim_jpgs << output
     vrt = "data/#{trs}.vrt"
-    task = file output => ['trimmed', vrt] do
+    task = safe_file output => ['trimmed', vrt] do
         sh "gdal_translate -of JPEG '#{vrt}' '#{output}'"
     end
     trim_tasks << task
