@@ -13,6 +13,7 @@ t040r20w4fi01.zip
 t040r21w4fi01.zip
 t040r22w4fi01.zip
 t041r16w4fi01.zip
+t041r17w4fi02.zip
 t041r18w4fi01.zip
 t041r19w4fi01.zip
 t041r20w4fi01.zip
