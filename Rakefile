@@ -55,7 +55,7 @@ entries.each do |entry, county|
     cutline = "cutlines/#{trs}.json"
 
     task = safe_file output => [input, cutline] do
-        sh "gdalwarp -of VRT -cutline '#{cutline}' -crop_to_cutline -dstalpha -overwrite '/vsizip/#{input}/#{trs}.jpg' '#{output}'"
+        sh "gdalwarp --config GDAL_CACHEMAX 1000 -of VRT -cutline '#{cutline}' -crop_to_cutline -dstalpha -overwrite '/vsizip/#{input}/#{trs}.jpg' '#{output}'"
     end
     cutline_tasks << task
 end
@@ -82,7 +82,7 @@ zips.each do |input|
     trim_jpgs << output
     vrt = "data/#{trs}.vrt"
     task = safe_file output => ['trimmed', vrt] do
-        sh "gdal_translate -of JPEG '#{vrt}' '#{output}'"
+        sh "gdal_translate --config GDAL_CACHEMAX 1000 -of JPEG '#{vrt}' '#{output}'"
     end
     trim_tasks << task
 end
@@ -113,8 +113,8 @@ tiles.each do |k, v|
         tmpfh.close
         begin
             tmpfn = tmpfh.path
-            sh *["gdalwarp", "-te", x1, y1, x2.to_s, y2.to_s] + inputs + [tmpfn]
-            sh *["gdal_translate", "-co", "COMPRESS=JPEG", "-co", "TILED=YES", tmpfn, "tiled/#{k}.tif"]
+            sh *["gdalwarp", "--config", "GDAL_CACHEMAX", "1000", "-te", x1, y1, x2.to_s, y2.to_s] + inputs + [tmpfn]
+            sh *["gdal_translate", "--config", "GDAL_CACHEMAX", "1000", "-co", "COMPRESS=JPEG", "-co", "TILED=YES", tmpfn, "tiled/#{k}.tif"]
         ensure
             tmpfh.unlink
         end
