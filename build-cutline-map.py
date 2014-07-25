@@ -8,7 +8,12 @@ driver = ogr.GetDriverByName("ESRI Shapefile")
 ds = driver.CreateDataSource("summary-maps/cutline-map.shp")
 
 srs = osr.SpatialReference()
-srs.ImportFromEPSG(4326)
+srs.ImportFromEPSG(26915)
+
+cutline_srs = osr.SpatialReference()
+cutline_srs.ImportFromEPSG(4326)
+
+coord_trans = osr.CoordinateTransformation(cutline_srs, srs)
 
 layer = ds.CreateLayer("tiles", srs, ogr.wkbPolygon)
 
@@ -24,6 +29,7 @@ for fn in glob("cutlines/*.json"):
     cutline_feature = cutline_layer.GetNextFeature()
     while cutline_feature:
         poly = cutline_feature.GetGeometryRef().Clone()
+        poly.Transform(coord_trans)
 
         feature = ogr.Feature(layer.GetLayerDefn())
         feature.SetField("Name", tile_id)
