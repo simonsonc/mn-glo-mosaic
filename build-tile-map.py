@@ -5,7 +5,7 @@ from glob import glob
 import os
 
 driver = ogr.GetDriverByName("ESRI Shapefile")
-ds = driver.CreateDataSource("tile-map.shp")
+ds = driver.CreateDataSource("summary-maps/tile-map.shp")
 
 srs = osr.SpatialReference()
 srs.ImportFromEPSG(26915)
