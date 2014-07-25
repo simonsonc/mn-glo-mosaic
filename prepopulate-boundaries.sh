@@ -33,4 +33,8 @@ for i in $zips; do
     query="'TOWN' = '${twp}' AND 'RANG' = '${range}' AND 'DIR' = '${ew}'"
     select="TWP_LABEL"
     ogr2ogr -t_srs "EPSG:4326" -select "$select" -where "$query" -f GeoJSON boundaries/$name.json /vsizip/trs.zip/tr.shp
+
+    # clean up
+    sed -i -e '/^"crs"/d' boundaries/$name.json
+    python reformat-json.py boundaries/$name.json
 done
