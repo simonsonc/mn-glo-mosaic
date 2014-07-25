@@ -110,6 +110,7 @@ t060r17w4fi01.zip
 t060r18w4fi01.zip
 t060r19w4fi01.zip
 t060r20w4fi01.zip
+t060r21w4fi02.zip
 t061r12w4fi01.zip
 t061r13w4fi01.zip
 t061r14w4fi01.zip
