@@ -33,9 +33,8 @@ def raster_extents(raster):
 extents = {}
 import glob
 for outline in glob.glob('cutlines/*.json'):
-    for ext in raster_extents(outline):
-        fn, _ = os.path.splitext(os.path.basename(outline))
-        extents[fn] = ext
+    fn, _ = os.path.splitext(os.path.basename(outline))
+    extents[fn] = list(raster_extents(outline))
 
 for x1 in range(MINX, MAXX, STEP):
     for y1 in range(MINY, MAXY, STEP):
@@ -59,7 +58,7 @@ for x1 in range(MINX, MAXX, STEP):
         for k, v in extents.iteritems():
             #print("Edge", str(cutline))
             #print("V", str(v))
-            if not v.Disjoint(cutline):
+            if any([not x.Disjoint(cutline) for x in v]):
                 entries.append(k)
 
         if len(entries):
