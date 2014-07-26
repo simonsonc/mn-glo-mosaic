@@ -16,6 +16,8 @@ t_srs.ImportFromEPSG(26915)
 s_srs = osr.SpatialReference()
 s_srs.ImportFromEPSG(4326)
 
+coord_trans = osr.CoordinateTransformation(s_srs, t_srs)
+
 def raster_extents(raster):
     ds=ogr.Open(raster)
 
@@ -25,7 +27,7 @@ def raster_extents(raster):
     feature = layer.GetNextFeature()
     while feature:
         geom = feature.GetGeometryRef().Clone()
-        geom.TransformTo(t_srs)
+        geom.Transform(coord_trans)
         yield geom
 
         feature = layer.GetNextFeature()
