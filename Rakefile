@@ -105,7 +105,8 @@ end
 
 tiles.each do |k, v|
     inputs = v.collect { |i| "data/#{i}.vrt" }
-    file "tiled/#{k}.tif" => inputs do |t|
+    tile_entry_fn = "tile-entries/#{k}.txt"
+    file "tiled/#{k}.tif" => inputs + ['tiled', tile_entry_fn] do |t|
         x1, y1 = k.split('x')
         x2 = x1.to_i + 10000
         y2 = y1.to_i + 10000
