@@ -63,6 +63,8 @@ for x1 in range(MINX, MAXX, STEP):
             if any([not x.Disjoint(cutline) for x in v]):
                 entries.append(k)
 
+        entries.sort()
+
         if len(entries):
             print("%d %d (%d)" % (x1, y1, len(entries)))
             with open('tile-entries/%dx%d.txt' % (x1, y1), 'w') as out:
