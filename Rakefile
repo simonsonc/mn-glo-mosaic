@@ -141,3 +141,8 @@ trs_by_county.each do |county, trs_list|
 end
 
 task :default => "build:downloaded"
+
+task 'refresh-tiles' do
+    sh 'python refresh-cutlines.py'
+    sh 'python refresh-tile-entries.py'
+end
