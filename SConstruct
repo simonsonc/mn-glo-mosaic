@@ -17,7 +17,7 @@ for trs, county in entries.iteritems():
         "wget 'ftp://ftp.lmic.state.mn.us/pub/data/basemaps/glo/%s/Georeferenced/%s.zip' -O$TARGET" % (county, trs)
         )
 
-    cutline = env.File("cutlines/{trs}.json".format(trs=trs))
+    cutline = env.File("cutlines/{trs}.geojson".format(trs=trs))
 
     vrtfile = env.Command("data/%s.vrt" % (trs,), zipfile,
         "gdalwarp --config GDAL_CACHEMAX 1000 -of VRT -cutline '{cutline}' -crop_to_cutline -dstalpha -overwrite '/vsizip/$SOURCE/{trs}.jpg' '$TARGET'".format(trs=trs, cutline=cutline))
