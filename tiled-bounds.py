@@ -15,16 +15,10 @@ t_srs.ImportFromEPSG(26915)
 
 def raster_extents(raster):
     ds=ogr.Open(raster)
-
     layer=ds.GetLayerByIndex(0)
-    left, right, top, bottom = layer.GetExtent()
 
-    feature = layer.GetNextFeature()
-    while feature:
-        geom = feature.GetGeometryRef().Clone()
-        yield geom
-
-        feature = layer.GetNextFeature()
+    for feature in layer:
+        yield feature.GetGeometryRef().Clone()
 
 extents = {}
 import glob
