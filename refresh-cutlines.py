@@ -5,6 +5,9 @@ import os
 import os.path
 import shutil
 
+shutil.rmtree('cutlines', True)
+os.mkdir('cutlines')
+
 t_srs = osr.SpatialReference()
 t_srs.ImportFromEPSG(26915)
 
