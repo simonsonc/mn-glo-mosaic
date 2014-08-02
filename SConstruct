@@ -4,11 +4,13 @@ from glob import glob
 import os.path
 
 entries = {}
+counties = {}
 for fn in glob('counties/*.txt'):
     county = os.path.splitext(os.path.basename(fn))[0]
     for line in open(fn).readlines():
         trs = line.strip().split('.')[0]
         entries[trs] = county
+        counties[county] = counties.get(county, []) + [trs]
 
 for trs, county in entries.iteritems():
     zipfile = env.Command(
@@ -23,10 +25,13 @@ for trs, county in entries.iteritems():
         "gdalwarp --config GDAL_CACHEMAX 1000 -of VRT -cutline '{cutline}' -crop_to_cutline -dstalpha -overwrite '/vsizip/$SOURCE/{trs}.jpg' '$TARGET'".format(trs=trs, cutline=cutline))
 
 tiles = {}
+tiles_by_trsid = {}
 for fn in glob('tile-entries/*.txt'):
     tileid = os.path.splitext(os.path.basename(fn))[0]
     for line in open(fn).readlines():
-        tiles[tileid] = tiles.get(tileid, []) + [line.strip()]
+        trsid = line.strip()
+        tiles[tileid] = tiles.get(tileid, []) + [trsid]
+        tiles_by_trsid[trsid] = tiles_by_trsid.get(trsid, []) + [tileid]
 
 for tileid, trs in tiles.iteritems():
     inputs = ['data/' + i + '.vrt' for i in trs]
@@ -39,3 +44,9 @@ for tileid, trs in tiles.iteritems():
         inputs + [tile_entry_fn],
         'echo $TARGET $SOURCES'
         )
+
+for county, trsids in counties.iteritems():
+    tiles = set()
+    for trsid in trsids:
+        tiles.update(tiles_by_trsid.get(trsid, []))
+    env.Alias(county, ['tiled/{0}.tif'.format(x) for x in tiles])
