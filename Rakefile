@@ -52,7 +52,7 @@ entries.each do |entry, county|
     input = "data/#{entry}"
     trs = File.basename(input, ".*")
     output = "data/#{trs}.vrt"
-    cutline = "cutlines/#{trs}.json"
+    cutline = "cutlines/#{trs}.geojson"
 
     task = safe_file output => [input, cutline] do
         sh "gdalwarp --config GDAL_CACHEMAX 1000 -of VRT -cutline '#{cutline}' -crop_to_cutline -dstalpha -overwrite '/vsizip/#{input}/#{trs}.jpg' '#{output}'"

@@ -13,11 +13,6 @@ MAXY = 5480000 #5472405.931701
 t_srs = osr.SpatialReference()
 t_srs.ImportFromEPSG(26915)
 
-s_srs = osr.SpatialReference()
-s_srs.ImportFromEPSG(4326)
-
-coord_trans = osr.CoordinateTransformation(s_srs, t_srs)
-
 def raster_extents(raster):
     ds=ogr.Open(raster)
 
@@ -27,14 +22,13 @@ def raster_extents(raster):
     feature = layer.GetNextFeature()
     while feature:
         geom = feature.GetGeometryRef().Clone()
-        geom.Transform(coord_trans)
         yield geom
 
         feature = layer.GetNextFeature()
 
 extents = {}
 import glob
-for outline in glob.glob('cutlines/*.json'):
+for outline in glob.glob('cutlines/*.geojson'):
     fn, _ = os.path.splitext(os.path.basename(outline))
     extents[fn] = list(raster_extents(outline))
 
