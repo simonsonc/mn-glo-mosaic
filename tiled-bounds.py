@@ -18,18 +18,8 @@ os.mkdir('tile-entries')
 t_srs = osr.SpatialReference()
 t_srs.ImportFromEPSG(26915)
 
-def raster_extents(raster):
-    ds=ogr.Open(raster)
-    layer=ds.GetLayerByIndex(0)
-
-    for feature in layer:
-        yield feature.GetGeometryRef().Clone()
-
-extents = {}
-import glob
-for outline in glob.glob('cutlines/*.geojson'):
-    fn, _ = os.path.splitext(os.path.basename(outline))
-    extents[fn] = list(raster_extents(outline))
+s_ds = ogr.Open('cutline-map.shp')
+s_layer = s_ds.GetLayerByIndex(0)
 
 for x1 in range(MINX, MAXX, STEP):
     for y1 in range(MINY, MAXY, STEP):
@@ -49,14 +39,9 @@ for x1 in range(MINX, MAXX, STEP):
         cutline = ogr.Geometry(ogr.wkbPolygon)
         cutline.AddGeometry(edge)
 
-        entries = []
-        for k, v in extents.iteritems():
-            #print("Edge", str(cutline))
-            #print("V", str(v))
-            if any([not x.Disjoint(cutline) for x in v]):
-                entries.append(k)
+        s_layer.SetSpatialFilter(cutline)
 
-        entries.sort()
+        entries = sorted(set([feature.GetField('trsid') for feature in s_layer]))
 
         if len(entries):
             print("%d %d (%d)" % (x1, y1, len(entries)))
