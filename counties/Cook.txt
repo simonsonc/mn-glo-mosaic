@@ -49,6 +49,7 @@ t064r02w4fi01.zip
 t064r03e4fi01.zip
 t064r03w4fi01.zip
 t064r04e4fi01.zip
+t064r04e4fi02.zip
 t064r04w4fi01.zip
 t064r05e4fi01.zip
 t064r05w4fi01.zip
