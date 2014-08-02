@@ -3,12 +3,17 @@ from osgeo import ogr
 from osgeo import osr
 from osgeo import gdal
 import os.path
+import os
+import shutil
 
 STEP = 10000
 MINX = 180000 #189774.764105
 MINY = 4810000 #4816337.325688
 MAXX = 770000 #761944.028930
 MAXY = 5480000 #5472405.931701
+
+shutil.rmtree('tile-entries', True)
+os.mkdir('tile-entries')
 
 t_srs = osr.SpatialReference()
 t_srs.ImportFromEPSG(26915)
