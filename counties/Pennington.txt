@@ -11,7 +11,9 @@ t153r39w5fi01.zip
 t153r40w5fi01.zip
 t153r41w5fi01.zip
 t153r42w5fi01.zip
+t153r42w5fi02.zip
 t153r43w5fi01.zip
+t153r43w5fi02.zip
 t153r44w5fi01.zip
 t153r45w5fi01.zip
 t154r39w5fi01.zip
@@ -19,5 +21,6 @@ t154r40w5fi01.zip
 t154r41w5fi01.zip
 t154r42w5fi01.zip
 t154r43w5fi01.zip
+t154r43w5fi02.zip
 t154r44w5fi01.zip
 t154r45w5fi01.zip
