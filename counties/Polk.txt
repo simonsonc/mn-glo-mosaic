@@ -32,7 +32,9 @@ t149r47w5fi01.zip
 t149r48w5fi01.zip
 t149r49w5fi01.zip
 t150r39w5fi01.zip
+t150r39w5fi02.zip
 t150r40w5fi01.zip
+t150r40w5fi02.zip
 t150r45w5fi01.zip
 t150r46w5fi01.zip
 t150r47w5fi01.zip
