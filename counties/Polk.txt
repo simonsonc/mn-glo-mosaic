@@ -21,7 +21,8 @@ t148r46w5fi01.zip
 t148r47w5fi01.zip
 t148r48w5fi01.zip
 t148r49w5fi01.zip
-t149r39w5fi01.zip
+t149r39w5fi03.zip
+t149r39w5fi04.zip
 t149r40w5fi01.zip
 t149r41w5fi01.zip
 t149r42w5fi01.zip
