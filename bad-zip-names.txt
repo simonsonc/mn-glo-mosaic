@@ -6,7 +6,11 @@ t111r26w5fi02.zip
 t114r16w5fi03.zip
 t120r24w5fi03.zip
 t124r49w5fi02.zip
+t143r37w5fi03.zip
 t144r26w5fi02.zip
+t144r37w5fi02.zip
+t145r37w5fi02.zip
+t146r37w5fi02.zip
 t147r36w5fi02.zip
 t149r39w5fi01.zip
 t149r39w5fi02.zip
