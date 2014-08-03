@@ -52,6 +52,7 @@ t152r33w5fi01.zip
 t152r34w5fi01.zip
 t152r36w5fi01.zip
 t153r30w5fi01.zip
+t153r30w5fi02.zip
 t153r31w5fi01.zip
 t153r32w5fi01.zip
 t153r33w5fi01.zip
