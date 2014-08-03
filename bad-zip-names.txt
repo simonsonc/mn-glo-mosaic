@@ -6,6 +6,8 @@ t044r32w4fi01.zip
 t044r32w4fi02.zip
 t044r32w4fi03.zip
 t059r26w4fi06.zip
+t067r15w4fi03.zip
+t067r16w4fi04.zip
 t067r25w4fi02.zip
 t110r26w5fi02.zip
 t111r26w5fi02.zip
