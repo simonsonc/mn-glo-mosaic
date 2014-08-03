@@ -74,6 +74,7 @@ t155r25w5fi01.zip
 t155r26w5fi01.zip
 t155r27w5fi01.zip
 t155r28w5fi01.zip
+t155r28w5fi02.zip
 t155r29w5fi01.zip
 t155r29w5fi02.zip
 t156r25w5fi01.zip
