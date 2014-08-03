@@ -4,13 +4,16 @@ t150r43w5fi01.zip
 t150r44w5fi01.zip
 t151r40w5fi01.zip
 t151r41w5fi01.zip
+t151r41w5fi02.zip
 t151r42w5fi01.zip
 t151r43w5fi01.zip
 t151r44w5fi01.zip
 t151r45w5fi01.zip
 t152r40w5fi01.zip
 t152r41w5fi01.zip
+t152r41w5fi02.zip
 t152r42w5fi01.zip
+t152r42w5fi02.zip
 t152r43w5fi01.zip
 t152r44w5fi01.zip
 t152r45w5fi01.zip
