@@ -15,7 +15,9 @@ t155r39w5fi01.zip
 t155r40w5fi01.zip
 t155r41w5fi01.zip
 t155r42w5fi01.zip
+t155r42w5fi02.zip
 t155r43w5fi01.zip
+t155r43w5fi02.zip
 t155r44w5fi01.zip
 t155r45w5fi01.zip
 t155r46w5fi01.zip
@@ -27,6 +29,7 @@ t156r39w5fi01.zip
 t156r40w5fi01.zip
 t156r41w5fi01.zip
 t156r42w5fi01.zip
+t156r42w5fi02.zip
 t156r43w5fi01.zip
 t156r44w5fi01.zip
 t156r45w5fi01.zip
@@ -39,7 +42,9 @@ t156r51w5fi01.zip
 t157r39w5fi01.zip
 t157r40w5fi01.zip
 t157r41w5fi01.zip
+t157r41w5fi02.zip
 t157r42w5fi01.zip
+t157r42w5fi02.zip
 t157r43w5fi01.zip
 t157r44w5fi01.zip
 t157r45w5fi01.zip
@@ -50,7 +55,9 @@ t157r49w5fi01.zip
 t157r50w5fi01.zip
 t158r39w5fi01.zip
 t158r40w5fi01.zip
+t158r40w5fi02.zip
 t158r41w5fi01.zip
+t158r41w5fi02.zip
 t158r42w5fi01.zip
 t158r43w5fi01.zip
 t158r44w5fi01.zip
