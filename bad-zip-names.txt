@@ -15,3 +15,7 @@ t147r36w5fi02.zip
 t149r39w5fi01.zip
 t149r39w5fi02.zip
 t149r39w5fi05.zip
+t158r26w5fi03.zip
+t158r26w5fi04.zip
+t158r26w5fi05.zip
+t158r26w5fi06.zip
