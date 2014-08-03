@@ -10,6 +10,7 @@ t147r32w5fi01.zip
 t147r33w5fi01.zip
 t147r34w5fi01.zip
 t147r35w5fi01.zip
+t147r35w5fi02.zip
 t148r30w5fi01.zip
 t148r31w5fi01.zip
 t148r32w5fi01.zip
