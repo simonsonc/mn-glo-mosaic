@@ -115,7 +115,7 @@ tiles.each do |k, v|
         begin
             tmpfn = tmpfh.path
             sh *["gdalwarp", "--config", "GDAL_CACHEMAX", "1000", "-te", x1, y1, x2.to_s, y2.to_s] + inputs + [tmpfn]
-            sh *["gdal_translate", "--config", "GDAL_CACHEMAX", "1000", "-co", "COMPRESS=JPEG", "-co", "TILED=YES", "-outsize", "50%", "50%", tmpfn, "tiled/#{k}.tif"]
+            sh *["gdal_translate", "--config", "GDAL_CACHEMAX", "1000", "-co", "COMPRESS=JPEG", "-co", "TILED=YES", "-outsize", "3750", "3750", tmpfn, "tiled/#{k}.tif"]
         ensure
             tmpfh.unlink
         end
