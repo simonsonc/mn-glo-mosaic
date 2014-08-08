@@ -16,6 +16,8 @@ t114r16w5fi03.zip
 t120r24w5fi03.zip
 t124r49w5fi02.zip
 t134r29w5fi02.zip
+t141r37w5fi02.zip
+t141r38w5fi02.zip
 t143r37w5fi03.zip
 t144r26w5fi02.zip
 t144r37w5fi02.zip
