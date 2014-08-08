@@ -11,6 +11,7 @@ t067r15w4fi03.zip
 t067r16w4fi04.zip
 t067r25w4fi02.zip
 t110r26w5fi02.zip
+t110r32w5fi02.zip
 t111r26w5fi02.zip
 t114r16w5fi03.zip
 t120r24w5fi03.zip
@@ -18,9 +19,13 @@ t124r49w5fi02.zip
 t134r29w5fi02.zip
 t141r37w5fi02.zip
 t141r38w5fi02.zip
+t143r26w5fi02.zip
 t143r37w5fi03.zip
 t144r26w5fi02.zip
+t144r28w5fi02.zip
 t144r37w5fi02.zip
+t145r31w5fi07.zip
+t145r31w5fi08.zip
 t145r37w5fi02.zip
 t146r37w5fi02.zip
 t147r36w5fi02.zip
@@ -31,4 +36,3 @@ t158r26w5fi03.zip
 t158r26w5fi04.zip
 t158r26w5fi05.zip
 t158r26w5fi06.zip
-t110r32w5fi02.zip
