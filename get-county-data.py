@@ -8,7 +8,7 @@ counties = [x.strip() for x in open('counties.txt').readlines()]
 conn = FTP('ftp.lmic.state.mn.us')
 conn.login()
 
-filter_regex = re.compile('.*fi0.\.zip')
+filter_regex = re.compile('.*[fh][ic]0.\.zip')
 
 for county in counties:
     print(county)
