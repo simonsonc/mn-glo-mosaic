@@ -46,16 +46,25 @@ county_tasks.each do |county, tasks|
     task 'download:' + county => tasks
 end
 
+# Figure out what the problem zips are
+problem_zips = File.open('problem-zips.txt').each_line.collect { |i| i.strip }
+
 # Tasks for making the VRT file from the zip with the cutline included
 cutline_tasks = []
 entries.each do |entry, county|
-    input = "data/#{entry}"
-    trs = File.basename(input, ".*")
+    trs = File.basename(entry, ".*")
+    if problem_zips.include?(entry) then
+        input = "problem-map.tif"
+        input_vsi = input
+    else
+        input = "data/#{entry}"
+        input_vsi = "/vsizip/#{input}/#{trs}.jpg"
+    end
     output = "data/#{trs}.vrt"
     cutline = "cutlines/#{trs}.geojson"
 
     task = safe_file output => [input, cutline] do
-        sh "gdalwarp --config GDAL_CACHEMAX 1000 -of VRT -cutline '#{cutline}' -crop_to_cutline -dstalpha -overwrite '/vsizip/#{input}/#{trs}.jpg' '#{output}'"
+        sh "gdalwarp --config GDAL_CACHEMAX 1000 -of VRT -cutline '#{cutline}' -crop_to_cutline -dstalpha -overwrite '#{input_vsi}' '#{output}'"
     end
     cutline_tasks << task
 end
