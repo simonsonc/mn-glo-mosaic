@@ -10,6 +10,7 @@ t050r16w4fi01.zip
 t050r17w4fi01.zip
 t050r18w4fi01.zip
 t050r19w4fi01.zip
+t050r19w4fi03.zip
 t050r20w4fi01.zip
 t050r21w4fi01.zip
 t051r12w4fi01.zip
@@ -20,6 +21,7 @@ t051r16w4fi01.zip
 t051r17w4fi01.zip
 t051r18w4fi01.zip
 t051r19w4fi01.zip
+t051r19w4fi03.zip
 t051r20w4fi01.zip
 t051r21w4fi01.zip
 t052r12w4fi01.zip
