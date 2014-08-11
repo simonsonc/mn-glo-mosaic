@@ -1,0 +1,37 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/openlayers/2.13.1/theme/default/style.css" />
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/openlayers/2.13.1/OpenLayers.js"></script>
+  </head>
+
+  <body style="margin: 0px;">
+    <div id="map" style="height: 100%;"></div>
+
+    <script type="text/javascript">
+var map = new OpenLayers.Map({
+  div: "map",
+  projection: "EPSG:26915",
+  maxExtent: [189774.764105, 4816337.325688, 761944.028930, 5472405.931701],
+});
+
+var image_layer = new OpenLayers.Layer.WMS( "GLO Images",
+    "http://simonsonc.com/cgi-bin/mapcache/wms/", {layers: 'mn-glo-utm'});
+map.addLayer(image_layer);
+
+var tile_layer = new OpenLayers.Layer.WMS( "Tile IDs",
+            "http://simonsonc.com/maps/mn-glo/wmsmap",
+            {layers: 'tileids', transparent: true, format: 'image/png'});
+tile_layer.setVisibility(false);
+map.addLayer(tile_layer);
+
+var cutline_layer = new OpenLayers.Layer.WMS( "Cutlines",
+            "http://simonsonc.com/maps/mn-glo/wmsmap",
+            {layers: 'cutlines', transparent: true, format: 'image/png'});
+cutline_layer.setVisibility(false);
+map.addLayer(cutline_layer);
+
+map.addControl(new OpenLayers.Control.LayerSwitcher());
+map.addControl(new OpenLayers.Control.Permalink({anchor: true}));
+    </script>
+  </body>
+</html>
