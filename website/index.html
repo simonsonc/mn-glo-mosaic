@@ -8,6 +8,10 @@
     <div id="map" style="height: 100%;"></div>
 
     <script type="text/javascript">
+var lat = 5144371;
+var lon = 476147;
+var zoom = 1;
+
 var map = new OpenLayers.Map({
   div: "map",
   projection: "EPSG:26915",
@@ -17,6 +21,12 @@ var map = new OpenLayers.Map({
 var image_layer = new OpenLayers.Layer.WMS( "GLO Images",
     "http://simonsonc.com/cgi-bin/mapcache/wms/", {layers: 'mn-glo-utm'});
 map.addLayer(image_layer);
+
+var county_layer = new OpenLayers.Layer.WMS( "Counties",
+            "http://simonsonc.com/maps/mn-glo/wmsmap",
+            {layers: 'counties', transparent: true, format: 'image/png'});
+county_layer.setVisibility(true);
+map.addLayer(county_layer);
 
 var tile_layer = new OpenLayers.Layer.WMS( "Tile IDs",
             "http://simonsonc.com/maps/mn-glo/wmsmap",
@@ -29,6 +39,10 @@ var cutline_layer = new OpenLayers.Layer.WMS( "Cutlines",
             {layers: 'cutlines', transparent: true, format: 'image/png'});
 cutline_layer.setVisibility(false);
 map.addLayer(cutline_layer);
+
+if (!map.getCenter()) {
+    map.setCenter(new OpenLayers.LonLat(lon, lat), zoom);
+}
 
 map.addControl(new OpenLayers.Control.LayerSwitcher());
 map.addControl(new OpenLayers.Control.Permalink({anchor: true}));
