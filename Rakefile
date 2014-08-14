@@ -19,7 +19,6 @@ def add_map(county, trs)
 end
 
 directory 'data'
-directory 'trimmed'
 directory 'tiled'
 
 entries = {}
@@ -82,28 +81,7 @@ end
 
 task "cut:downloaded" => downloaded_fns
 
-# Tasks for actually trimming the tiles
-trim_tasks = []
-trim_jpgs = []
-zips.each do |input|
-    trs = File.basename(input, ".*")
-    output = "trimmed/#{trs}.jpg"
-    trim_jpgs << output
-    vrt = "data/#{trs}.vrt"
-    task = safe_file output => ['trimmed', vrt] do
-        sh "gdal_translate --config GDAL_CACHEMAX 1000 -of JPEG '#{vrt}' '#{output}'"
-    end
-    trim_tasks << task
-end
-
-task :trim => trim_tasks
-
-# Tasks for building the final patchwork
-file 'trimmed/all.vrt' => trim_jpgs do |t|
-    sh *["gdalbuildvrt", "trimmed/all.vrt"] + trim_jpgs
-end
-task "build:downloaded" => 'trimmed/all.vrt'
-
+# Tile tasks
 tiles = Hash.new{|h,k| h[k] = []}
 FileList['tile-entries/*.txt'].each do |fn|
     tileid = File.basename(fn, ".*")
@@ -155,7 +133,7 @@ trs_by_county.each do |county, trs_list|
     task county => tile_fns
 end
 
-task :default => "build:downloaded"
+task :default => "tile:all"
 
 task 'refresh-tiles' do
     sh 'python refresh-cutlines.py'
