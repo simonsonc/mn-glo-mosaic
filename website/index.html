@@ -18,8 +18,11 @@ var map = new OpenLayers.Map({
   maxExtent: [189774.764105, 4816337.325688, 761944.028930, 5472405.931701],
 });
 
+var attrib = 'Survey images by <a href="http://www.mngeo.state.mn.us/glo/">GLO Historic Plat Map Retrieval System</a>';
+
 var image_layer = new OpenLayers.Layer.WMS( "GLO Images",
-    "http://simonsonc.com/cgi-bin/mapcache/wms/", {layers: 'mn-glo-utm'});
+    "http://simonsonc.com/cgi-bin/mapcache/wms/",
+    {layers: 'mn-glo-utm'}, {attribution: attrib});
 map.addLayer(image_layer);
 
 var county_layer = new OpenLayers.Layer.WMS( "Counties",
