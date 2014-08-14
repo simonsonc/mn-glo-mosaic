@@ -112,10 +112,12 @@ FileList['tile-entries/*.txt'].each do |fn|
     end
 end
 
+all_tile_tiffs = []
 tiles.each do |k, v|
     inputs = v.collect { |i| "data/#{i}.vrt" }
     tile_entry_fn = "tile-entries/#{k}.txt"
-    file "tiled/#{k}.tif" => inputs + ['tiled', tile_entry_fn] do |t|
+    output = "tiled/#{k}.tif"
+    file output => inputs + ['tiled', tile_entry_fn] do |t|
         x1, y1 = k.split('x')
         x2 = x1.to_i + 10000
         y2 = y1.to_i + 10000
@@ -129,7 +131,11 @@ tiles.each do |k, v|
             tmpfh.unlink
         end
     end
+
+    all_tile_tiffs << output
 end
+
+task "tile:all" => all_tile_tiffs
 
 def invert_multimap(map)
     ret = Hash.new{|h,k| h[k] = []}
