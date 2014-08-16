@@ -6,7 +6,7 @@ t027r21w4fi01.zip
 t027r22w4fc01.zip
 t028r20w4fi01.zip
 t028r21w4fi01.zip
-t028r22w4fi01.zip
+t028r22w4fc03.zip
 t029r20w4fi01.zip
 t029r21w4fi01.zip
 t030r20w4fi01.zip
