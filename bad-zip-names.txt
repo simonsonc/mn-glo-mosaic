@@ -18,6 +18,7 @@ t061r16w4fi01.zip
 t067r15w4fi03.zip
 t067r16w4fi04.zip
 t067r25w4fi02.zip
+t107r07w5fi02.zip
 t110r26w5fi02.zip
 t110r32w5fi02.zip
 t111r26w5fi02.zip
