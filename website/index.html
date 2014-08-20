@@ -43,6 +43,12 @@ var cutline_layer = new OpenLayers.Layer.WMS( "Cutlines",
 cutline_layer.setVisibility(false);
 map.addLayer(cutline_layer);
 
+var years_layer = new OpenLayers.Layer.WMS( "Completed Year",
+            "http://simonsonc.com/maps/mn-glo/wmsmap",
+            {layers: 'years', transparent: true, format: 'image/png'});
+years_layer.setVisibility(false);
+map.addLayer(years_layer);
+
 if (!map.getCenter()) {
     map.setCenter(new OpenLayers.LonLat(lon, lat), zoom);
 }
