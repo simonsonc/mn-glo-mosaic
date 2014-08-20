@@ -5,7 +5,9 @@ from glob import glob
 import os.path
 
 driver = ogr.GetDriverByName("ESRI Shapefile")
-ds = driver.CreateDataSource("summary-maps/cutline-map.shp")
+out_fn = "summary-maps/cutline-map.shp"
+driver.DeleteDataSource(out_fn)
+ds = driver.CreateDataSource(out_fn)
 
 srs = osr.SpatialReference()
 srs.ImportFromEPSG(26915)
